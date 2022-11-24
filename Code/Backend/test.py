@@ -23,13 +23,10 @@ for targetFilename in targetList:
         result = facade.TraceLinkValue(sourceData,targetData,"word2vec")
 
     # new code added to keep track of/print just the four links with the highest traceability values
-        values[result[1]] = sourceFilename
-    final_out = sorted(values)
-    key=0
-    print("jumanji",final_out)
+        values[sourceFilename] = result[1]
     with open(os.getcwd() + sys.argv[3], 'w', encoding='latin1') as writeFile:
-      while float(final_out[key]) >= outputThreshold and key < len(final_out)-1:
-          print("Source File: ",values[final_out[key]], "Target File: ", targetFilename, "Traceability: ",final_out[key])
-          writeFile.write("Source File: " + values[final_out[key]] + ", Target File: " + targetFilename + ", Traceability: " + str(final_out[key]) + '\n')
-          key+=1
+        for key in values:
+            if (float(values[key]) >= outputThreshold):
+                print("Source File: ",key, "Target File: ", targetFilename, "Traceability: ",values[key])
+                writeFile.write("Source File: " + key + ", Target File: " + targetFilename + ", Traceability: " + str(values[key]) + '\n')
       writeFile.close()
