@@ -26,6 +26,7 @@ for targetFilename in targetList:
         values[result[1]] = sourceFilename
     final_out = sorted(values)
     key=0
+    print("jumanji",final_out)
     with open(os.getcwd() + sys.argv[3], 'w', encoding='latin1') as writeFile:
       while float(final_out[key]) >= outputThreshold and key < len(final_out):
           print("Source File: ",values[final_out[key]], "Target File: ", targetFilename, "Traceability: ",final_out[key])
