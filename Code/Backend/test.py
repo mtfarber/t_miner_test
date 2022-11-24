@@ -28,7 +28,7 @@ for targetFilename in targetList:
     key=0
     print("jumanji",final_out)
     with open(os.getcwd() + sys.argv[3], 'w', encoding='latin1') as writeFile:
-      while float(final_out[key]) >= outputThreshold and key < len(final_out):
+      while float(final_out[key]) >= outputThreshold or key < len(final_out):
           print("Source File: ",values[final_out[key]], "Target File: ", targetFilename, "Traceability: ",final_out[key])
           writeFile.write("Source File: " + values[final_out[key]] + ", Target File: " + targetFilename + ", Traceability: " + str(final_out[key]) + '\n')
           key+=1
