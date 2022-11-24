@@ -29,4 +29,4 @@ for targetFilename in targetList:
             if (float(values[key]) >= outputThreshold):
                 print("Source File: ",key, "Target File: ", targetFilename, "Traceability: ",values[key])
                 writeFile.write("Source File: " + key + ", Target File: " + targetFilename + ", Traceability: " + str(values[key]) + '\n')
-      writeFile.close()
+        writeFile.close()
