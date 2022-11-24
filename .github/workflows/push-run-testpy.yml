@@ -4,9 +4,12 @@ on: [push]
 
 #Variables that can be changed by the user
 env:
+
   sourcePath: /requirements
   targetList: /Code/Backend/changed-file-list.txt
   outputFile: /Code/Backend/Traceability_Report.txt
+  targetThreshold: .1
+
 
 jobs:
   Example-Action:
@@ -33,8 +36,7 @@ jobs:
             echo "$file" >> changed-file-list.txt
           done
           touch Traceability_Report.txt
-          python test.py $sourcePath $targetList $outputFile
-
+          python test.py $sourcePath $targetList $outputFile $targetThreshold
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
         with:
