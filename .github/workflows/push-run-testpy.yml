@@ -8,7 +8,7 @@ env:
   sourcePath: /requirements
   targetList: /Code/Backend/changed-file-list.txt
   outputFile: /Code/Backend/Traceability_Report.txt
-  targetThreshold: .1
+  targetThreshold: 0.0
 
 
 jobs:
