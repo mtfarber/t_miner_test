@@ -9,8 +9,8 @@ env:
   targetList: /Code/Backend/changed-file-list.txt
   outputFile: /Code/Backend/Traceability_Report.txt
   targetThreshold: 0.0
-  devFeedback: '{"est_ossl_util.c RQ4.txt": 21.0}'
-
+  devFeedback: |
+    {"est_ossl_util.c RQ4.txt": 21.0}
 jobs:
   Example-Action:
     runs-on: ubuntu-latest
