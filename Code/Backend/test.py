@@ -1,7 +1,7 @@
 import ds4se.facade as facade
 import os
 import sys
-import json
+import ast
 
 def new_probability(num1, num2):   #written as a function to be more easily updated to a different algorithm later
     return (num1+num2)/2
@@ -12,7 +12,7 @@ targetPath = os.getcwd()
 targetList = open(os.getcwd() + sys.argv[2], 'r', encoding='latin1').read().splitlines()
 outputThreshold = float(sys.argv[4]) 
 
-input = json.loads(sys.argv[5]) #the dictionary with (targetFile, sourceFile) -- a tuple -- as the key and the probability as the value
+input = ast.literal_eval(sys.argv[5]) #the dictionary with (targetFile, sourceFile) -- a tuple -- as the key and the probability as the value
 #dictionary to be filled later
 
 for targetFilename in targetList:
