@@ -26,7 +26,7 @@ for targetFilename in targetList:
             f.close()
 
         result = facade.TraceLinkValue(sourceData,targetData,"word2vec")
-        tmpStr = targetFilename+", "+sourceFilename
+        tmpStr = targetFilename+" "+sourceFilename
         if tmpStr in input:  #check if the file pair is in the input from the user
             result = new_probability(result, float(input[tmpStr]))  #recalculating the probability
         # print("Source File: ",sourceFilename, "Target File: ", targetFilename, "Traceability: ",result)
