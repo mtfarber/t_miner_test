@@ -43,11 +43,3 @@ jobs:
         with:
           name: Traceability Report
           path: Code/Backend/Traceability_Report.txt
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-
-    Terms
-    Privacy
-    Security
-    Status
