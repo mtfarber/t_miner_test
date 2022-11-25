@@ -1,7 +1,7 @@
 import ds4se.facade as facade
 import os
 import sys
-
+import json
 
 def new_probability(num1, num2):   #written as a function to be more easily updated to a different algorithm later
     return (num1+num2)/2
@@ -12,7 +12,7 @@ targetPath = os.getcwd()
 targetList = open(os.getcwd() + sys.argv[2], 'r', encoding='latin1').read().splitlines()
 outputThreshold = float(sys.argv[4]) 
 
-input = {} #sys.argv[5], the dictionary with (targetFile, sourceFile) -- a tuple -- as the key and the probability as the value
+input = json.loads(sys.argv[5]) #the dictionary with (targetFile, sourceFile) -- a tuple -- as the key and the probability as the value
 #dictionary to be filled later
 
 for targetFilename in targetList:
@@ -28,7 +28,7 @@ for targetFilename in targetList:
         result = facade.TraceLinkValue(sourceData,targetData,"word2vec")
         tmpStr = targetFilename+", "+sourceFilename
         if tmpStr in input:  #check if the file pair is in the input from the user
-            result = new_probability(result, input[tmpStr])  #recalculating the probability
+            result = new_probability(result, float(input[tmpStr]))  #recalculating the probability
         # print("Source File: ",sourceFilename, "Target File: ", targetFilename, "Traceability: ",result)
 
     # new code added to keep track of/print just the four links with the highest traceability values
