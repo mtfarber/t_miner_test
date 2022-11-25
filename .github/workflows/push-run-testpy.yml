@@ -9,6 +9,7 @@ env:
   targetList: /Code/Backend/changed-file-list.txt
   outputFile: /Code/Backend/Traceability_Report.txt
   targetThreshold: 0.0
+  devFeedback: {"est_ossl_util.c, RQ4.txt":21.0}
 
 
 jobs:
@@ -36,9 +37,17 @@ jobs:
             echo "$file" >> changed-file-list.txt
           done
           touch Traceability_Report.txt
-          python test.py $sourcePath $targetList $outputFile $targetThreshold
+          python test.py $sourcePath $targetList $outputFile $targetThreshold $devFeedback
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
         with:
           name: Traceability Report
           path: Code/Backend/Traceability_Report.txt
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+
+    Terms
+    Privacy
+    Security
+    Status
