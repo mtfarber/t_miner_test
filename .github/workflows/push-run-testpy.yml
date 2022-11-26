@@ -37,7 +37,7 @@ jobs:
             echo "$file" >> changed-file-list.txt
           done
           touch Traceability_Report.txt
-          python test.py $sourcePath $targetList $outputFile $targetThreshold ${{ envdevFeedback }}
+          python test.py $sourcePath $targetList $outputFile $targetThreshold ${{ env.devFeedback }}
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
         with:
