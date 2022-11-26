@@ -11,7 +11,7 @@ sourcePath = os.getcwd() + sys.argv[1]
 targetPath = os.getcwd()
 targetList = open(os.getcwd() + sys.argv[2], 'r', encoding='latin1').read().splitlines()
 outputThreshold = float(sys.argv[4]) 
-
+print(sys.argv[5])
 input = ast.literal_eval(sys.argv[5]) #the dictionary with (targetFile, sourceFile) -- a tuple -- as the key and the probability as the value
 #dictionary to be filled later
 
