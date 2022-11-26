@@ -26,13 +26,14 @@ for targetFilename in targetList:
             f.close()
 
         result = facade.TraceLinkValue(sourceData,targetData,"word2vec")
+        traceResult = result[1]
         tmpStr = targetFilename+" "+sourceFilename
         if tmpStr in input:  #check if the file pair is in the input from the user
-            result = new_probability(result, float(input[tmpStr]))  #recalculating the probability
+            traceResult = new_probability(traceResult, float(input[tmpStr]))  #recalculating the probability
         # print("Source File: ",sourceFilename, "Target File: ", targetFilename, "Traceability: ",result)
 
     # new code added to keep track of/print just the four links with the highest traceability values
-        values[sourceFilename] = result[1]
+        values[sourceFilename] = traceResult
     with open(os.getcwd() + sys.argv[3], 'w', encoding='latin1') as writeFile:
         for key in values:
             if (float(values[key]) >= outputThreshold):
