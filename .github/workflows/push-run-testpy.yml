@@ -38,7 +38,7 @@ jobs:
           done
           touch Traceability_Report.txt
           touch Commits_Report.txt
-          for file in ${{github.event.push.commits.message}}; do
+          for file in ${{github.event.push.commits}}; do
             echo "$file"
             echo "$file" >> Commits_Report.txt
           done
