@@ -37,7 +37,11 @@ jobs:
             echo "$file" >> changed-file-list.txt
           done
           touch Traceability_Report.txt
-          echo "${{github.event.push.commits.message}}"
+          touch Commits_Report.txt
+          for file in ${{github.event.push.commits.message}}; do
+            echo "$file"
+            echo "$file" >> Commits_Report.txt
+          done
           python test.py $sourcePath $targetList $outputFile $targetThreshold ${{ env.devFeedback }}
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
