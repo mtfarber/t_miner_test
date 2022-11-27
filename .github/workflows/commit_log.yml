@@ -22,7 +22,7 @@ jobs:
           cd ./Code/Backend
           touch Commits_Report.txt
 
-      - run: gh pr view 19 --json commits >> Commits_Report.txt
+      - run: gh api -H "Accept: application/vnd.github+json" /repos/OWNER/REPO/pulls/PULL_NUMBER
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
