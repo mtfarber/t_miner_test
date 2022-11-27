@@ -22,10 +22,11 @@ jobs:
       - run: |
           cd ./Code/Backend
           touch Commits_Report.txt
-          for file in ${{github.event.commits[][message]}}; do
+          for file in ${{ github.commits.message }}; do
             echo "$file"
             echo "$file" >> Commits_Report.txt
           done
+          echo "${{toJSON(github.event)}}"
 
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
