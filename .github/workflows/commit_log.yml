@@ -15,18 +15,19 @@ env:
 jobs:
   Example-Action:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
         with:
             fetch-depth: 0
+       - run: |
+           cd ./Code/Backend
+           touch Commits_Report.txt
+           for file in ${{ github.event.commits[0].message }}; do
+             echo "$file"
+             echo "$file" >> Commits_Report.txt
+           done
 
-      - if: ${{github.base_ref}}
-      - run: |
-          cd ./Code/Backend
-          touch Commits_Report.txt
-
-      - name: Upload changed files list
+       - name: Upload changed files list
         uses: actions/upload-artifact@v3
         with:
           name: Commit Report
