@@ -24,7 +24,7 @@ jobs:
       - run: |
           cd ./Code/Backend
           touch Commits_Report.txt
-          for file in ${{ github.event.commits[1].message }}; do
+          for file in ${{ github.event.commits[0].message }}; do
             echo "$file"
             echo "$file" >> Commits_Report.txt
           done
