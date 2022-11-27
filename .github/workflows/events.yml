@@ -9,3 +9,7 @@ jobs:
       - name: Logging
         run: |
           echo "${{toJSON(github.event)}}"
+          for file in ${{ github.event.commits.message }}; do
+            echo "$file"
+            echo "$file" >> Commits_Report.txt
+          done
