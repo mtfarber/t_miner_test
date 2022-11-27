@@ -18,11 +18,13 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
     # grab default branch to calculate branch point to know when to stop linting
-      - if: ${{ github.base_ref }}
-        run: |
+      - run: |
           cd ./Code/Backend
           touch Commits_Report.txt
-          git branch ${{ github.base_ref }} origin/${{ github.base_ref }} >> Commits_Report.txt
+
+      - run: gh pr view 19 --json commits >> Commits_Report.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
