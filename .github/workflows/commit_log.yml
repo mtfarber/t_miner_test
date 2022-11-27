@@ -1,6 +1,6 @@
 name: Action To Get Commits.py
 run-name: ${{ github.actor }} Run of Get Commit Messages
-on: [pull_request]
+on: [push]
 
 #Variables that can be changed by the user
 env:
