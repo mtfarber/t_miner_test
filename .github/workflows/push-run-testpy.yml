@@ -37,12 +37,16 @@ jobs:
             echo "$file" >> changed-file-list.txt
           done
           touch Traceability_Report.txt
-          touch Commits_Report.txt
-          for file in ${{github.event.commits.message}}; do
-            echo "$file"
-            echo "$file" >> Commits_Report.txt
-          done
           python test.py $sourcePath $targetList $outputFile $targetThreshold ${{ env.devFeedback }}
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - if: ${{ github.base_ref }}
+        run: git branch ${{ github.base_ref }} origin/${{ github.base_ref }}
+        
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
         with:

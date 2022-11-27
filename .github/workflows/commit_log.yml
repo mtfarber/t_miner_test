@@ -1,6 +1,6 @@
 name: Action To Get Commits.py
 run-name: ${{ github.actor }} Run of Get Commit Messages
-on: [pull_request]
+on: push
 
 #Variables that can be changed by the user
 env:
@@ -24,11 +24,8 @@ jobs:
 
       - if: ${{github.base_ref}}
       - run: |
-          git branch ${{ github.base_ref }} origin/${{ github.base_ref }}
           cd ./Code/Backend
           touch Commits_Report.txt
-
-
 
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
