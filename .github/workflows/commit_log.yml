@@ -13,17 +13,14 @@ jobs:
   Example-Action:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
-            fetch-depth: 0
-       - run: |
-           cd ./Code/Backend
-           touch Commits_Report.txt
-           for file in ${{ github.event.commits[0].message }}; do
-             echo "$file"
-             echo "$file" >> Commits_Report.txt
-           done
-          git diff --name-only ${{ github.event.before}} ${{github.event.after}}
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+    # grab default branch to calculate branch point to know when to stop linting
+      - if: ${{ github.base_ref }}
+        run: git branch ${{ github.base_ref }} origin/${{ github.base_ref }}
+
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
         with:
