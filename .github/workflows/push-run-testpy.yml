@@ -48,3 +48,9 @@ jobs:
         with:
           name: Traceability Report
           path: Code/Backend/Traceability_Report.txt
+
+      - name: Upload changed files list
+        uses: actions/upload-artifact@v3
+        with:
+          name: Commit Report
+          path: Code/Backend/Commits_Report.txt
