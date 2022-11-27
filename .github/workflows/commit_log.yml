@@ -1,17 +1,14 @@
 name: Action To Get Commits.py
 run-name: ${{ github.actor }} Run of Get Commit Messages
-on: push
-
+on: [push]
 #Variables that can be changed by the user
 env:
-
   sourcePath: /requirements
   targetList: /Code/Backend/changed-file-list.txt
   outputFile: /Code/Backend/Traceability_Report.txt
   targetThreshold: 0.0
   devFeedback: |
     '{"est_ossl_util.c RQ4.txt": 21.0}'
-
 jobs:
   Example-Action:
     runs-on: ubuntu-latest
@@ -26,8 +23,8 @@ jobs:
              echo "$file"
              echo "$file" >> Commits_Report.txt
            done
-
-       - name: Upload changed files list
+          git diff --name-only ${{ github.event.before}} ${{github.event.after}}
+      - name: Upload changed files list
         uses: actions/upload-artifact@v3
         with:
           name: Commit Report
