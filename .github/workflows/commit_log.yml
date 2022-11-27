@@ -24,7 +24,7 @@ jobs:
       - run: |
           cd ./Code/Backend
           touch Commits_Report.txt
-          echo git diff ${{ github.event.before}} ${{github.event.after}}
+          echo git diff --name-only ${{ github.event.before}} ${{github.event.after}}
 
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
