@@ -15,7 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: $GITHUB_HEAD_REF
+          fetch-depth: 2
+      - run: git checkout HEAD^
     # grab default branch to calculate branch point to know when to stop linting
       - run: |
           cd ./Code/Backend
