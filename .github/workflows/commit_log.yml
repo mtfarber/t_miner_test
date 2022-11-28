@@ -28,6 +28,8 @@ jobs:
           echo "GITHUB_SHA:$GITHUB_SHA"
           echo "GITHUB_REF:$GITHUB_REF"
           echo "GITHUB_HEAD_REF:$GITHUB_HEAD_REF"
+          git checkout $GITHUB_HEAD_REF
+          git log >> Commits_Report.txt
 
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
