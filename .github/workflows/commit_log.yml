@@ -14,17 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha }}
     # grab default branch to calculate branch point to know when to stop linting
       - run: |
           cd ./Code/Backend
           touch Commits_Report.txt
 
-      - run: gh api -H "Accept: application/vnd.github+json" /repos/OWNER/REPO/pulls/PULL_NUMBER
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print Variables
+        run: |
+          echo "GITHUB_WORKFLOW:$GITHUB_WORKFLOW"
+          echo "GITHUB_EVENT_NAME:$GITHUB_EVENT_NAME"
+          echo "GITHUB_EVENT_PATH:$GITHUB_EVENT_PATH"
+          echo "GITHUB_WORKSPACE:$GITHUB_WORKSPACE"
+          echo "GITHUB_SHA:$GITHUB_SHA"
+          echo "GITHUB_REF:$GITHUB_REF"
+          echo "GITHUB_HEAD_REF:$GITHUB_HEAD_REF"
 
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
