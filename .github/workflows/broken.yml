@@ -23,7 +23,8 @@ jobs:
           touch Commits_Report.txt
 
       - run: gh pr view 19 --json commits >> Commits_Report.txt
-        env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
