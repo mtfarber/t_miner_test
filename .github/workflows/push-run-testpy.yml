@@ -40,7 +40,7 @@ jobs:
         run: python -m pip install -r requirements.txt
 
       - run: |
-          cd ./Code/Backend
+      #cd ./Code/Backend
           touch changed-file-list.txt
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file"
