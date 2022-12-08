@@ -9,13 +9,13 @@ jobs:
       - uses: actions/checkout@v2
       - name: Get commit logs
         run: |
-          # Get the SHA of the most recent commit
-          COMMIT_SHA=$(git rev-parse HEAD)
+          # Get the SHA of the most recent commit in the pull request branch
+          COMMIT_SHA=$(git rev-parse ${{ github.event.pull_request.head.sha }})
 
-          # Get the commit logs for the pull request
-          COMMIT_LOGS=$(git log $COMMIT_SHA)
+          # Get all of the commit logs for the pull request branch
+          COMMIT_LOGS=$(git log --all $COMMIT_SHA)
 
-          # Write the commit logs to a file named "commit-logs.md"
+          # Write the commit logs to a file named "commit-logs.txt"
           echo "$COMMIT_LOGS" > commit-logs.txt
 
       # Export the log file to the GitHub Artifacts storage
