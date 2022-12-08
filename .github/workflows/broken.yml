@@ -17,3 +17,10 @@ jobs:
 
           # Write the commit logs to a file named "commit-logs.md"
           echo "$COMMIT_LOGS" > commit-logs.md
+
+      # Export the log file to the GitHub Artifacts storage
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: commit-logs
+          path: commit-logs.md
