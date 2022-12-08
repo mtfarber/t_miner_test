@@ -16,7 +16,7 @@ jobs:
           COMMIT_LOGS=$(git log $COMMIT_SHA)
 
           # Write the commit logs to a file named "commit-logs.md"
-          echo "$COMMIT_LOGS" > commit-logs.md
+          echo "$COMMIT_LOGS" > commit-logs.txt
 
       # Export the log file to the GitHub Artifacts storage
       - name: Upload artifact
