@@ -1,33 +1,19 @@
-name: Action To Get Commits.py
-run-name: ${{ github.actor }} Run of Get Commit Messages
-on: [pull_request]
-
-#Variables that can be changed by the user
-env:
-
-  sourcePath: /requirements
-  targetList: /Code/Backend/changed-file-list.txt
-  outputFile: /Code/Backend/Traceability_Report.txt
-  targetThreshold: 0.0
-  devFeedback: |
-    '{"est_ossl_util.c RQ4.txt": 21.0}'
+on:
+  pull_request:
+    types: [opened, synchronize]
 
 jobs:
-  Example-Action:
+  get_commit_logs:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          cd ./Code/Backend
-          touch Commits_Report.txt
+      - name: Get commit logs
+        run: |
+          # Get the SHA of the most recent commit
+          COMMIT_SHA=$(git rev-parse HEAD)
 
-      - run: gh pr view 19 --json commits >> Commits_Report.txt
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Get the commit logs for the pull request
+          COMMIT_LOGS=$(git log $COMMIT_SHA)
 
-      - name: Upload changed files list
-        uses: actions/upload-artifact@v3
-        with:
-          name: Commit Report
-          path: Code/Backend/Commits_Report.txt
+          # Write the commit logs to a file named "commit-logs.md"
+          echo "$COMMIT_LOGS" > commit-logs.md
