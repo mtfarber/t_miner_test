@@ -9,11 +9,14 @@ jobs:
       - uses: actions/checkout@v2
       - name: Get commit logs
         run: |
-          # Get the SHA of the most recent commit in the pull request branch
-          COMMIT_SHA=$(git rev-parse ${{ github.event.pull_request.head.sha }})
+          # Get the name of the branch that is being requested to be merged
+          BRANCH_NAME=${{ github.event.pull_request.base.ref }}
 
-          # Get all of the commit logs for the pull request branch
-          COMMIT_LOGS=$(git log --all $COMMIT_SHA)
+          # Check out the branch that is being requested to be merged
+          git checkout $BRANCH_NAME
+
+          # Get all of the commit logs for the branch
+          COMMIT_LOGS=$(git log --all)
 
           # Write the commit logs to a file named "commit-logs.txt"
           echo "$COMMIT_LOGS" > commit-logs.txt
