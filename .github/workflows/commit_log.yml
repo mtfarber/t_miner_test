@@ -16,9 +16,9 @@ jobs:
       - run: |
           cd ./Code/Backend
           touch Commits_Report.html
-          echo "<!DOCTYPE html><html><head><title>T-Miner Traceability Report</title></head><body><p>Commit Details: </p>" >> Commits_Report.html
-          git log --pretty=format:"<tr> <td> <a href="https://github.com/mtfarber/t_miner_test/commit/%H">%h</a> </td> <td>%s</td> <tr>" >> Commits_Report.html
-          echo "</body></html>" >> Traceability_Report.html
+          echo "<!DOCTYPE html><html><head><title>T-Miner Traceability Report</title></head><body><p>Commit Details: </p><tr>" >> Commits_Report.html
+          git log --pretty=format:"<td> <a href="https://github.com/mtfarber/t_miner_test/commit/%H">%h</a> </td> <td>%s</td>" >> Commits_Report.html
+          echo "<tr></body></html>" >> Traceability_Report.html
 
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
