@@ -13,12 +13,15 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: ${{ env.PR_FETCH_DEPTH }}
     # grab default branch to calculate branch point to know when to stop linting
+
       - run: |
           cd ./Code/Backend
+          apt-get update
+          apt-get install -y pandoc
           touch Commits_Report.html
-          echo echo "<!DOCTYPE html><html><head><title>T-Miner Traceability Report</title></head><body><p>Commit Details: </p>" >> Commits_Report.html
-          git log --pretty=format:"<tr> <td>%H</td> <td>%s</td> <tr>" >> Commits_Report.html
-          echo "</body></html>" >> Traceability_Report.html
+          touch log.txt
+          git log >> log.txt
+          pandoc log.txt -s -o log.html --base-header-level=2 -A Commits_Report.html
 
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
