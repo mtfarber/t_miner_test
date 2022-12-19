@@ -17,8 +17,7 @@ jobs:
         with:
           python-version: "3.8"
       - name: "PR commits + 1"
-        run: echo "PR_FETCH_DEPTH=$(( ${{ 
-github.event.pull_request.commits }} + 1 ))" >> "${GITHUB_ENV}"
+        run: echo "PR_FETCH_DEPTH=$(( ${{ github.event.pull_request.commits }} + 1 ))" >> "${GITHUB_ENV}"
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }}
@@ -34,21 +33,15 @@ github.event.pull_request.commits }} + 1 ))" >> "${GITHUB_ENV}"
       - run: |
           cd ./Code/Backend
           touch changed-file-list.txt
-          for file in ${{ steps.changed-files.outputs.all_changed_files 
-}}; do
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file"
             echo "$file" >> changed-file-list.txt
           done
           touch Traceability_Report.html
-          echo "<!DOCTYPE html><html><head><title>T-Miner Traceability 
-Report</title></head><body><p>Commit Details: " >> 
-Traceability_Report.html
-          git log --pretty=format:"<tr> <td>%H</td> <td>%s</td> <tr>" >> 
-Traceability_Report.html
+          echo "<!DOCTYPE html><html><head><title>T-Miner Traceability Report</title></head><body><p>Commit Details: " >> Traceability_Report.html
+          git log --pretty=format:"<tr> <td>%H</td> <td>%s</td> <tr>" >> Traceability_Report.html
           echo "</p><ol>" >> Traceability_Report.html
-          python traceability.py $sourcePath $targetList $outputFile 
-$targetThreshold $targetSourceString $targetString $targetSourceValue ${{ 
-github.repository }}
+          python traceability.py $sourcePath $targetList $outputFile $targetThreshold $targetSourceString $targetString $targetSourceValue ${{ github.repository }}
           echo "</ol></body></html>" >> Traceability_Report.html
       - name: Upload changed files list
         uses: actions/upload-artifact@v3
