@@ -16,7 +16,7 @@ jobs:
       - run: |
           cd ./Code/Backend
           touch Commits_Report.html
-          echo echo "<!DOCTYPE html><html><head><title>T-Miner Traceability Report</title></head><body><p>Commit Details: </p>" >> Traceability_Report.html
+          echo echo "<!DOCTYPE html><html><head><title>T-Miner Traceability Report</title></head><body><p>Commit Details: </p>" >> Commits_Report.html
           git log --pretty=format:"<tr> <td>%H</td> <td>%s</td> <tr>" >> Commits_Report.html
           echo "</body></html>" >> Traceability_Report.html
 
