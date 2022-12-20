@@ -16,8 +16,8 @@ jobs:
       - run: |
           cd ./Code/Backend
           touch Commits_Report.html
-          echo "<!DOCTYPE html><html><head><title>T-Miner Traceability Report</title></head><body><p>Commit Details: </p><table><tr><th>Commit</th><th>User</th><th>Message<th></tr>" >> Commits_Report.html
-          git log --pretty=format:"<tr> <td><a href="https://github.com/mtfarber/t_miner_test/commit/%H">%h</a></td><td>%an</td><td>%s</td></tr>" >> Commits_Report.html
+          echo "<!DOCTYPE html><html><head><title>T-Miner Traceability Report</title></head><body><p>Commit Details: </p><table><tr><th>Commit</th><th>User</th><th>Message</th></tr>" >> Commits_Report.html
+          git log --pretty=format:"<tr><td><a href="https://github.com/mtfarber/t_miner_test/commit/%H">%h</a></td><td>%an</td><td>%s</td></tr>" >> Commits_Report.html
           echo "</table></body></html>" >> Traceability_Report.html
 
       - name: Upload changed files list
